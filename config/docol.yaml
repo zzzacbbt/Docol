@@ -1,0 +1,6 @@
+mysql:
+  database: docol
+  user: saisi
+  password: pass
+  host: localhost
+  port: 3306

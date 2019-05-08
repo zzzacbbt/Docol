@@ -8,7 +8,7 @@ config_path = BASE_DIR / 'config' / 'docol.yaml'
 
 def get_config(path):
     with open(path) as f:
-        config = yaml.load(f)
+        config = yaml.load(f,Loader=yaml.FullLoader)
     return config
 
 config = get_config(config_path)

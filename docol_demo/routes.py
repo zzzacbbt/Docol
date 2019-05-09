@@ -1,15 +1,16 @@
 #routes.py
 import pathlib
-from handles import index,poll,vote,results,upload
+from handles import index, upload, download, choose_project
 
 PROJECT_ROOT = pathlib.Path(__file__).parent
 
 def setup_routes(app):
-    app.router.add_get('/', index)
-    app.router.add_get('/poll/{question_id}', poll, name='poll')
-    app.router.add_get('/poll/{question_id}/results', results, name='results')
-    app.router.add_post('/poll/{question_id}/vote', vote, name='vote')
-    app.router.add_routes('*', '/{project_id}/upload', upload, name='upload')
+    app.router.add_get('/', index, name='index')
+
+    app.router.add_route('*', '/upload', choose_project, name='choose_project')
+    app.router.add_route('*', '/upload/{project_id}', upload, name='upload')
+    app.router.add_route('*', '/download/{project_id}', download, name='download')
+    
     setup_static_routes(app)
     
 

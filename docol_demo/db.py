@@ -20,7 +20,7 @@ files = Table(
     Column('id', Integer, primary_key=True),
     Column('file_name', String(200), nullable=False),
     Column('path', String(200), nullable=False),
-    Column('pub_data', Date, nullable=False),
+    Column('date', Date, nullable=False),
 
     Column('project_id',
             Integer,
@@ -68,6 +68,14 @@ async def get_project(conn,project_id):
     return project_records, file_records
 
 
+async def get_projects(conn):
+    result = await conn.execute(
+        projects.select()
+        .order_by(projects.c.id)
+    )
+    projects_records = await result.fetchall()
+    return projects_records 
+
 async def vote(conn, question_id, choice_id):
     result = await conn.execute(
         choice.update()
@@ -79,3 +87,30 @@ async def vote(conn, question_id, choice_id):
     if not record:
         msg = "Question with id: {} or choice id: {} does not exists"
         raise RecordNotFound(msg.format(question_id, choice_id))
+
+
+async def save(conn, id, filename, path, date, project_id):
+    result = await conn.execute(files.insert(), [
+        {'id': id,
+        'file_name': filename,
+        'path': path,
+        'date': date,
+        'project_id': project_id
+        }
+    ])
+
+
+async def get_project_name(conn,project_id):
+    result = await conn.execute(
+        projects.select()
+        .where(projects.c.id == project_id)
+        )
+    project_records = await result.first()
+    if not project_records:
+        msg = "Project with id: {} does not exists"
+        raise RecordNotFound(msg.format(project_id))
+
+    return project_records
+
+
+

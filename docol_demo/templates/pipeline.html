@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% set title = "Pipeline" %}
+
+{% block content %}
+
+<form action="" method="post">
+    <div class="uk-margin-left uk-width-1-2">
+        <h1>
+            <a href="/">{{title}}</a>
+        </h1>
+        <laber for="method">method</laber>
+        <select class="uk-select uk-margin-top uk-margin-bottom" name="method">
+            <option value='upload'>upload</option>
+            <option value='download'>download</option>
+            <option value='delete'>delete</option>
+        </select>
+        <laber for="project"><a href="{{url('create_project')}}" uk-icon="icon: plus">project </a></laber>
+        <select class="uk-select uk-margin-top uk-margin-bottom" name="project">
+            {% for project in projects %}
+            <option value={{project.id}}>{{ project.project_name }}</option>
+            {% endfor %}
+        </select>
+        
+        <button type="submit" class="uk-button uk-button-default uk-margin-larger-top">submit</button>
+    </div>
+
+</form>
+
+
+
+
+
+{% endblock %}

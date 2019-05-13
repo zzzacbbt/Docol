@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% set title = "{}_delete".format(project.project_name) %}
+
+{% block content %}
+
+<div>
+    <form action="" method="post">
+        <h1>
+            <a href="/">{{title}}</a>
+        </h1>
+        {% for file in files %}
+        <input type="radio" name="file" id="file{{ loop.index }}" value="{{ file.id }}">
+        <label for="file{{ loop.index }}">{{ file.id }}{{ file.file_name }}{{ file.datetime }}</label><br>
+        {% endfor %}
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+{% endblock %}

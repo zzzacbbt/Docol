@@ -1,8 +1,37 @@
 {% extends "base.html" %}
 
-{% set title = "project" %}
+{% set title = "Docol" %}
 
 {% block content %}
+<nav class="uk-navbar-container uk-margin-left" uk-navbar>
+    <div class="uk-navbar-left">
+        <h1>
+            <a href="/">{{title}}</a>
+        </h1>
+        <u1 class="uk-navbar-nav">
+            <li><a href="/registration">registration</a></li>
+            <li><a href="/login">login</a></li>
+            <li><a href='/pipeline'>pipeline</a></li>
+        </u1>
+    </div>
+</nav>
 
+<div class="uk-margin-left">
+    <laber><a href="{{url('create_project')}}" uk-icon="icon: plus"></a></laber>
+    <laber><a href="{{url('delete_project')}}" uk-icon="icon: minus"></a></laber>
+</div>
+
+<div class="uk-margin-left uk-margin-top">
+    {% for project in projects %}
+    <label>{{project.project_name}}</label>
+    {% for file in files %}
+    {% if file.project_id == project.id %}
+    <li><a
+            href="/download/{{projects.id}}/files/{{file.datetime}}/{{file.file_name}}">{{file.id}}--{{file.datetime}}--{{file.file_name}}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+</div>
 
 {% endblock %}

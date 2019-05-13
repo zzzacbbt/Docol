@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        {% block head %}
-            <link rel="stylesheet" type="text/css" 
-                  href="{{ url('static',filename='style.css') }}"/>
-            <title>{{title}}</title>
+
+<head>
+    <meta charset="utf-8">
+    {% block head %}
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{{ url('static',filename='/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url('static',filename='/css/uikit-rtl.min.css') }}" />
+    <link rel="stylesheet" href="{{ url('static',filename='/css/uikit.min.css') }}"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.4/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.4/js/uikit-icons.min.js"></script>
+    {% endblock %}
+</head>
+
+<body>
+    <div>
+        {% block content %}
         {% endblock %}
-    </head>
-    <body>
-        <h1>{{title}}</h1>
-        <div>
-            {% block content %}
-            {% endblock %}
-        </div>
-    </body>
+    </div>
+</body>
+
 </html>

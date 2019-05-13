@@ -1,9 +1,16 @@
 {% extends "base.html" %}
-{% set title = projects.project_name %}
+{% set title = "{}_upload".format(project.project_name) %}
 
 {% block content %}
+
 <form action="" enctype='multipart/form-data' method="post">
-    <input type="file" name="file">
-    <input type="submit" value="upload">
+    <div>
+        <h1>
+            <a href="/">{{title}}</a>
+        </h1>
+        <input type="file" name="file" >
+        <input type="submit" value="upload">
+    </div>
+
 </form>
 {% endblock %}

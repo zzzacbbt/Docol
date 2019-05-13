@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% set title = "create_project" %}
+
+{% block content %}
+
+
+<form action="" method="post" id="create_project">
+    <div class="uk-margin uk-margin-left uk-width-1-2">
+        <h1>
+            <a href="/">{{title}}</a>
+        </h1>
+        <input name="create_project" class="uk-input" type="text" placeholder="Input"><br><br>
+        <button type="submit" class="uk-button uk-button-default uk-margin-larger-top">add</button>
+    </div>
+
+</form>
+
+
+{% endblock %}

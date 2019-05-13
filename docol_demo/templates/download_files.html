@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% set title = "project" %}
+
+{% block content %}
+<ul>
+{% for file in files %}
+
+    <li><a href="/download/{{projects.id}}/files/{{file.datetime}}/{{file.file_name}}">{{file.id}}--{{file.datetime}}--{{file.file_name}}</a> </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

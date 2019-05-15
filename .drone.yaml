@@ -2,14 +2,12 @@ kind: pipeline
 name: default
 
 steps: 
-
-
 - name: backend
   image: python
   commands:
-      - pip install -r requirements.txt
-      - py ../init_db.py
-      - py ../decol_demo/app.py
+  - pip install -r requirements.txt
+  - py ../init_db.py
+  - py ../decol_demo/app.py
 
   
 services:

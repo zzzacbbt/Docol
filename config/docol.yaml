@@ -2,7 +2,7 @@ postgres:
   database: docol
   user: saisi
   password: pass
-  host: localhost
+  host: database
   port: 5432
   minsize: 1
   maxsize: 5

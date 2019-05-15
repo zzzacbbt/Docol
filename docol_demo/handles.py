@@ -7,6 +7,7 @@ import os
 from os.path import dirname
 import time
 import aiofiles
+from aiohttp_session import new_session
 
 
 @aiohttp_jinja2.template('main.html')
@@ -130,12 +131,12 @@ async def download_files(request):
     async with request.app['db'].acquire() as conn:
         project_id = int(request.match_info['project_id'])
         try:
-            projects, files = await db.get_projectandfiles(conn, project_id)
+            project, files = await db.get_projectandfiles(conn, project_id)
         except db.RecordNotFound as e:
             raise web.HTTPNotFound(text=str(e))
 
         return {
-            'projects': projects,
+            'project': project,
             'files': files
         }
 
@@ -258,13 +259,19 @@ async def login(request):
             user_record = await db.login_user(conn, username=username)
             if user_record == None:
                 url = request.app.router['login'].url_for()
+                response = web.HTTPFound(location=url)
             else:
                 if user_record['password'] == password:
                     url = request.app.router['index'].url_for()
+                    response = web.HTTPFound(location=url)
+                    response.set_cookie(name='docol_cookie', value="1234")
                 else:
                     url = request.app.router['login'].url_for()
-            return web.HTTPFound(location=url)
-
+                    response = web.HTTPFound(location=url)
+            
+            
+            return response
+            
 
 @aiohttp_jinja2.template('pipeline.html')
 async def pipeline(request):
@@ -276,7 +283,7 @@ async def pipeline(request):
             url = request.app.router['upload'].url_for(
                 project_id=str(project_id))
         if method == 'download':
-            url = request.app.router['download_files'].url_for()
+            url = request.app.router['download_files'].url_for(project_id=str(project_id))
         if method == 'delete':
             url = request.app.router['delete_files'].url_for(project_id=str(project_id))
         return web.HTTPFound(location=url)
@@ -287,3 +294,5 @@ async def pipeline(request):
     return {
         'projects': projects
     }
+
+

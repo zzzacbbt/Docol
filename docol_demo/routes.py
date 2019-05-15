@@ -18,6 +18,5 @@ def setup_routes(app):
     app.router.add_route('*', '/pipeline', handles.pipeline, name='pipeline')
     setup_static_routes(app)
 
-
 def setup_static_routes(app):
     app.router.add_static('/static/', path=PROJECT_ROOT / 'static', name='static')

@@ -27,7 +27,7 @@
     {% for file in files %}
     {% if file.project_id == project.id %}
     <li><a
-            href="/download/{{projects.id}}/files/{{file.datetime}}/{{file.file_name}}">{{file.id}}--{{file.datetime}}--{{file.file_name}}</a>
+            href="/download/{{project.id}}/files/{{file.datetime}}/{{file.file_name}}">{{file.id}}--{{file.datetime}}--{{file.file_name}}</a>
     </li>
     {% endif %}
     {% endfor %}

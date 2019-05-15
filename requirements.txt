@@ -4,4 +4,4 @@ jinja2
 aiopg
 aiofiles
 pathlib
-yaml
+pyyaml

@@ -2,13 +2,6 @@ kind: pipeline
 name: default
 
 steps: 
-- name: init
-  image: python
-  commands:
-  - pip install -r requirements.txt
-  - py ./init_db.py
-
-
 - name: build
   image: zssacbbt/docol
 

@@ -2,13 +2,14 @@ kind: pipeline
 name: default
 
 steps: 
-- name: build
-  image: zssacbbt/docol
-
 - name: wait
   image: postgres:10-alpine
   commands:
   - sleep 60
+- name: build
+  image: zssacbbt/docol
+
+
 
 - name: docker
   image: plugins/docker

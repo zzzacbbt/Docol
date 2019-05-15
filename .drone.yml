@@ -5,6 +5,10 @@ steps:
 - name: build
   image: zssacbbt/docol
 
+- name: wait
+  image: postgres:10-alpine
+  commands:
+  - sleep 60
 
 - name: docker
   image: plugins/docker

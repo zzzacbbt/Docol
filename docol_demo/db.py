@@ -67,6 +67,40 @@ async def close_pg(app):
     app['db'].close()
     await app['db'].wait_closed()
 
+async def create_table_users(conn):
+    await conn.execute('DROP TABLE IF EXISTS users CASCADE')
+    await conn.execute('''CREATE TABLE users(
+        id INTEGER PRIMARY KEY,
+        username varchar(200),
+        password varchar(200)
+    )''')
+
+
+async def create_table_projects(conn):
+    await conn.execute('DROP TABLE IF EXISTS projects CASCADE')
+    await conn.execute('''CREATE TABLE projects(
+        id serial PRIMARY KEY,
+        project_name varchar(200)
+    )''')
+
+
+async def create_table_files(conn):
+    await conn.execute('DROP TABLE IF EXISTS files CASCADE')
+    await conn.execute('''CREATE TABLE files(
+        id INTEGER PRIMARY KEY,
+        file_name varchar(200),
+        path varchar(200),
+        datetime timestamp,
+        project_id INTEGER REFERENCES projects(id)
+    )''')
+
+
+async def init_table(app):
+    async with app['db'].acquire() as conn:
+        await create_table_users(conn)
+        await create_table_projects(conn)
+        await create_table_files(conn)
+
 
 async def get_projectandfiles(conn, project_id):
     result = await conn.execute(

@@ -40,7 +40,7 @@ async def login_middlewares(app, handler):
     async def login(request):
         cookie = request.cookies.get('docol_cookie')
         rel_url = str(request.rel_url)
-        if cookie == '1234' or rel_url == '/login' :
+        if cookie == '1234' or rel_url == '/login' or rel_url == '/registration' :
             response = await handler(request)
             return response
          

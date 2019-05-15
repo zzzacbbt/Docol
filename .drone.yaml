@@ -1,0 +1,18 @@
+pipeline:
+  backend:
+  image: python
+  commands:
+      - pip install -r requirements.txt
+      - py ../init_db.py
+      - py ../decol_demo/app.py
+
+  
+services:
+- name: database
+  image: postgres:10-alpine
+  ports:
+  - 5432
+  environment:
+    POSTGRES_USER: saisi
+    POSTGRES_PASSWORD: pass
+    POSTGRES_DB: docol

@@ -152,7 +152,7 @@ async def delete_project(conn, id):
         )
         await conn.execute(
         projects.update()
-        .where(projects.c.id > project_id)
+        .where(projects.c.id > id)
         .values(id=projects.c.id-1)
     )
     else:

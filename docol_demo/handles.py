@@ -7,7 +7,6 @@ import os
 from os.path import dirname
 import time
 import aiofiles
-from aiohttp_session import new_session
 
 
 @aiohttp_jinja2.template('main.html')

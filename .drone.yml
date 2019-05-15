@@ -2,19 +2,23 @@ kind: pipeline
 name: default
 
 steps: 
-- name: backend
+- name: init
   image: python
   commands:
   - pip install -r requirements.txt
   - py ../init_db.py
-  - py ../decol_demo/app.py
+
 
 - name: build
+  image: zssacbbt/docol
+
+  
+- name: docker
   image: plugins/docker
   settings:
     username: zssacbbt
     password: Zss1327230
-    repo: zssacbbt/docol
+    repo: zssacbbt/docolserver
     tags:
      - latest
      - '1.0.1'

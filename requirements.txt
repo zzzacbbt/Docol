@@ -5,3 +5,4 @@ aiopg
 aiofiles
 pathlib
 pyyaml
+sqlalchemy

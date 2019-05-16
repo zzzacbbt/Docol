@@ -6,8 +6,13 @@ steps:
   image: postgres:10-alpine
   commands:
   - sleep 60
+
 - name: build
-  image: zssacbbt/docol
+  image: docker
+  commands:
+  - docker build --tag==zssacbbt/docol.
+  
+
 
 
 
@@ -16,7 +21,7 @@ steps:
   settings:
     username: zssacbbt
     password: Zss1327230
-    repo: zssacbbt/docolserver
+    repo: zssacbbt/docol
     tags:
      - latest
      - '1.0.1'

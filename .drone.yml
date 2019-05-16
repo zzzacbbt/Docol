@@ -10,7 +10,7 @@ steps:
 - name: build
   image: docker
   commands:
-  - docker build --tag==zssacbbt/docol .
+  - docker build --tag=zssacbbt/docol .
 
 
 

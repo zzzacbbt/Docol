@@ -7,9 +7,6 @@ steps:
   commands:
   - sleep 60
 
-
-
-
 - name: docker
   image: plugins/docker
   settings:

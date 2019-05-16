@@ -7,10 +7,6 @@ steps:
   commands:
   - sleep 60
 
-- name: build
-  image: docker
-  commands:
-  - docker build --tag=zssacbbt/docol .
 
 
 

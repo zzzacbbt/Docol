@@ -11,9 +11,6 @@ steps:
   image: docker
   commands:
   - docker build --tag=zssacbbt/docol .
-  volumes:
-  - name: docker
-    path: /var/run/docker.sock
 
 
 
@@ -38,5 +35,4 @@ services:
     POSTGRES_PASSWORD: pass
     POSTGRES_DB: docol
 
-volumes:
-- name: docker
+

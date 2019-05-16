@@ -5,7 +5,7 @@ steps:
 - name: wait
   image: postgres:10-alpine
   commands:
-  - sleep 60
+  - sleep 30
 
 - name: docker
   image: plugins/docker
